@@ -7,6 +7,7 @@ import TimerIcon from "@/components/icons/TimerIcon";
 import PointerIcon from "@/components/icons/PointerIcon";
 import OrderUpDownIcon from "@/components/icons/OrderUpDownIcon";
 import OrderDownUpIcon from "@/components/icons/OrderDownUpIcon";
+import Head from "next/head"; // Import the Head component
 
 export default function Home() {
   const buttons = [];
@@ -92,91 +93,100 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col h-full justify-center items-center">
-      {gameFinishTime ? (
-        <div className="text-center">
-          <p className="py-8 text-xl">Your answer time: {answerTime()}s.</p>
-          <div className="flex justify-center">
-            <button className="button" onClick={() => restartGame()}>
-              Restart Game
-            </button>
+    <>
+      <Head>
+        {/* Add your Google site verification meta tag here */}
+        <meta
+          name="google-site-verification"
+          content="SdMMddYYXis7UAElNHK4D5QnMqMLU7QnX7vjGXP1G0g"
+        />
+      </Head>
+      <div className="flex flex-col h-full justify-center items-center">
+        {gameFinishTime ? (
+          <div className="text-center">
+            <p className="py-8 text-xl">Your answer time: {answerTime()}s.</p>
+            <div className="flex justify-center">
+              <button className="button" onClick={() => restartGame()}>
+                Restart Game
+              </button>
+            </div>
           </div>
-        </div>
-      ) : (
-        <div>
-          {gameMixedButtons.length ? (
-            <>
-              <div className="mb-4">
-                <div className="w-full h-2 overflow-hidden rounded-md">
-                  <div
-                    className="w-full h-full bg-red-400"
-                    style={
-                      gameMixedButtons.length
-                        ? {
-                            animation: `timingLineAnimation ${timeToRemember}ms linear forwards`,
-                          }
-                        : {}
-                    }
-                  ></div>
-                </div>
-              </div>
-              <div className="flex justify-center">
-                <GameBox
-                  options={{
-                    checkAnswer,
-                  }}
-                />
-              </div>
-            </>
-          ) : (
-            <></>
-          )}
-
-          <div className="flex flex-col items-center justify-center">
-            {!gameMixedButtons.length ? (
+        ) : (
+          <div>
+            {gameMixedButtons.length ? (
               <>
-                <div className="flex items-center mb-10">
-                  <div className="flex items-center mx-6 p-2 bg-gray-200 rounded-lg">
-                    <GridIcon className="w-8" />
-                    <span className="ml-3 font-bold text-3xl">
-                      {matrixSize}
-                    </span>
-                  </div>
-                  <div className="flex items-center mx-6 p-2 bg-gray-200 rounded-lg">
-                    <TimerIcon className="w-8" />
-                    <span className="ml-3 font-bold text-3xl">
-                      {timeToRemember / 1000}s
-                    </span>
-                  </div>
-                  <div className="flex items-center mx-6 p-2 bg-gray-200 rounded-lg">
-                    <PointerIcon className="w-8" />
-                    <span className="ml-3 font-bold text-3xl">
-                      {numberButtonsToRemember}
-                    </span>
-                  </div>
-                  <div className="flex items-center mx-6 p-2 bg-gray-200 rounded-lg">
-                    {answerNumbersOrder === 1 ? (
-                      <OrderUpDownIcon className="w-8" />
-                    ) : (
-                      <OrderDownUpIcon className="w-8" />
-                    )}
+                <div className="mb-4">
+                  <div className="w-full h-2 overflow-hidden rounded-md">
+                    <div
+                      className="w-full h-full bg-red-400"
+                      style={
+                        gameMixedButtons.length
+                          ? {
+                              animation: `timingLineAnimation ${timeToRemember}ms linear forwards`,
+                            }
+                          : {}
+                      }
+                    ></div>
                   </div>
                 </div>
-                <button className="button mx-1" onClick={() => initGameData()}>
-                  Start Game
-                </button>
+                <div className="flex justify-center">
+                  <GameBox
+                    options={{
+                      checkAnswer,
+                    }}
+                  />
+                </div>
               </>
             ) : (
-              <button
-                className="button !bg-red-500 mx-1"
-                onClick={() => cancelGame()}
-              >
-                Cancel Game
-              </button>
+              <></>
             )}
+
+            <div className="flex flex-col items-center justify-center">
+              {!gameMixedButtons.length ? (
+                <>
+                  <div className="flex items-center mb-10">
+                    <div className="flex items-center mx-6 p-2 bg-gray-200 rounded-lg">
+                      <GridIcon className="w-8" />
+                      <span className="ml-3 font-bold text-3xl">
+                        {matrixSize}
+                      </span>
+                    </div>
+                    <div className="flex items-center mx-6 p-2 bg-gray-200 rounded-lg">
+                      <TimerIcon className="w-8" />
+                      <span className="ml-3 font-bold text-3xl">
+                        {timeToRemember / 1000}s
+                      </span>
+                    </div>
+                    <div className="flex items-center mx-6 p-2 bg-gray-200 rounded-lg">
+                      <PointerIcon className="w-8" />
+                      <span className="ml-3 font-bold text-3xl">
+                        {numberButtonsToRemember}
+                      </span>
+                    </div>
+                    <div className="flex items-center mx-6 p-2 bg-gray-200 rounded-lg">
+                      {answerNumbersOrder === 1 ? (
+                        <OrderUpDownIcon className="w-8" />
+                      ) : (
+                        <OrderDownUpIcon className="w-8" />
+                      )}
+                    </div>
+                  </div>
+                  <button className="button mx-1" onClick={() => initGameData()}>
+                    Start Game
+                  </button>
+                </>
+              ) : (
+                <button
+                  className="button !bg-red-500 mx-1"
+                  onClick={() => cancelGame()}
+                >
+                  Cancel Game
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
