@@ -19,3 +19,26 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.button {
+  @apply px-4 py-2 rounded-md bg-black text-white
+}
+
+.gridButton__hidden {
+  @apply text-transparent
+}
+.gridButton__closedAnswer {
+  @apply bg-gray-200 text-transparent
+}
+.gridButton__wrongAnswer {
+  @apply bg-red-500 text-white
+}
+
+@keyframes timingLineAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
