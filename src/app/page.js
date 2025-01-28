@@ -100,6 +100,13 @@ export default function Home() {
           name="google-site-verification"
           content="SdMMddYYXis7UAElNHK4D5QnMqMLU7QnX7vjGXP1G0g"
         />
+        {/* Add your custom meta description */}
+        <meta
+          name="description"
+          content="Jake's App Japan Dev - Explore a fun and interactive app built with Next.js."
+        />
+        {/* Update the page title */}
+        <title>Jake's App Japan Dev</title>
       </Head>
       <div className="flex flex-col h-full justify-center items-center">
         {gameFinishTime ? (
@@ -140,6 +147,12 @@ export default function Home() {
             ) : (
               <></>
             )}
+          </div>
+        )}
+      </div>
+    </>
+  );
+  
 
             <div className="flex flex-col items-center justify-center">
               {!gameMixedButtons.length ? (
